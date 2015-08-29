@@ -1,2 +1,7 @@
 # React material player
-### Media player component for react.js and material-ui
+Media player react compoment based on material-ui
+### Features
+
+- [ ] Media type detection
+- [ ] Vimeo and Youtube support
+- [ ] Footnotes for ad content
