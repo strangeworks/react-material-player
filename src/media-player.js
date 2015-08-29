@@ -5,11 +5,10 @@ const AudioPlayer = require('./audio-player');
 
 let MediaPlayer = React.createClass({
   render() {
+    const { mediaType } = this.props;
+    const Component = mediaType == 'video' ? VideoPlayer : AudioPlayer;
+
     return (
-      const { mediaType } = this.props;
-
-      Component = mediaType == 'video' ? VideoPlayer : AudioPlayer;
-
       <div>
         <Component {...this.props} />
       </div>
