@@ -2,14 +2,21 @@
 
 const React = require('react');
 const mui = require('material-ui');
-const { Card, CardMedia, CardTitle, CardActions, Styles, FloatingActionButton } = mui;
+const { Card, CardMedia, CardTitle, CardActions, Styles, FloatingActionButton, Slider } = mui;
 const { ThemeManager } = Styles;
+const { ActionPlay, ActionPause } = require('./icons');
 
 let themeManagerInstance = new ThemeManager();
 
 let VideoPlayer = React.createClass({
   childContextTypes: {
     muiTheme: React.PropTypes.object,
+  },
+
+  getInitialState() {
+    return {
+      playing: false
+    }
   },
 
   getChildContext() {
@@ -25,14 +32,18 @@ let VideoPlayer = React.createClass({
     src: React.PropTypes.string
   },
 
-  _play() {
+  _onClick() {
     const mediaNode = this.refs.video.getDOMNode();
-    const action = !!mediaNode.paused ? 'play' : 'pause';
+    let action = !!mediaNode.paused ? 'play' : 'pause';
+
+    this.setState({playing: !this.state.playing})
+
     mediaNode[action]();
   },
 
   render() {
-    const {title, desc, poster, src} = this.props
+    const {title, desc, poster, src} = this.props;
+    let icon = this.state.playing ? <ActionPause /> : <ActionPlay />;
 
     return (
       <Card>
@@ -40,7 +51,9 @@ let VideoPlayer = React.createClass({
           <video src={src} poster={poster} ref="video" />
         </CardMedia>
         <CardActions>
-          <FloatingActionButton onClick={this._play} />
+          <FloatingActionButton onClick={this._onClick}>
+            {icon}
+          </FloatingActionButton>
         </CardActions>
       </Card>
     );
