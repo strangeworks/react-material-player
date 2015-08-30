@@ -1,4 +1,6 @@
 node_modules/*
 lib/*
+src/*
+demo/*
 npm-debug.log
 demo/bundle.js
