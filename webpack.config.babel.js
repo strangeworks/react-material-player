@@ -1,9 +1,10 @@
-var webpack = require('webpack');
-var path = require('path');
-var buildPath = path.resolve(__dirname, 'demo');
-var nodeModulesPath = path.resolve(__dirname, 'node_modules');
+import webpack from 'webpack';
+import path from 'path';
 
-var config = {
+const buildPath = path.resolve(__dirname, 'demo');
+const nodeModulesPath = path.resolve(__dirname, 'node_modules');
+
+export default {
   //Entry points to the project
   entry: [
     'webpack/hot/dev-server',
@@ -45,5 +46,3 @@ var config = {
     ]
   }
 };
-
-module.exports = config;
